@@ -1,0 +1,179 @@
+erDiagram
+    %% =========================================================================
+    %% ClubSphere Entity-Relationship Diagram (Mermaid ERD)
+    %% =========================================================================
+
+    Branches ||--o{ Programs : "categorizes (1:N)"
+    Programs ||--o{ Users : "enrolls (1:N)"
+    Programs ||--o{ Clubs : "hosts (1:N)"
+    Programs ||--o{ ClubProposals : "categorizes (1:N)"
+    
+    Roles ||--o{ Users : "defines permissions (1:N)"
+    
+    Users ||--o{ Clubs : "manages (1:N)"
+    Users ||--o{ ClubMemberships : "joins (1:N)"
+    Users ||--o{ EventRegistrations : "registers for (1:N)"
+    Users ||--o{ Attendance : "attends (1:N)"
+    Users ||--o{ Attendance : "records check-in (1:N)"
+    Users ||--o{ ClubProposals : "submits (1:N)"
+    Users ||--o{ Approvals : "reviews (1:N)"
+    Users ||--o{ Notifications : "receives (1:N)"
+    Users ||--o{ AuditLogs : "acts in (1:N)"
+    Users ||--o{ UploadedFiles : "owns (1:N)"
+    Users ||--o{ Events : "creates (1:N)"
+    Users ||--o{ EventOutcomes : "submits outcome (1:N)"
+
+    Clubs ||--o{ ClubMemberships : "has members (1:N)"
+    Clubs ||--o{ Events : "hosts (1:N)"
+
+    Events ||--o{ EventRegistrations : "receives RSVPs (1:N)"
+    Events ||--o{ Attendance : "records attendance (1:N)"
+    Events ||--o| EventOutcomes : "concludes with (1:1)"
+
+    ClubProposals ||--o{ Approvals : "reviewed through (1:N)"
+
+    %% =========================================================================
+    %% Entity Attributes & Types
+    %% =========================================================================
+
+    Branches {
+        int BranchId PK "Primary Key (Auto-increment)"
+        string BranchKey UK "Unique stable identifier (e.g. btech)"
+        string Name UK "Display name (e.g. Bachelor of Technology)"
+        string DegreeLevel "undergraduate | postgraduate | doctoral"
+        int SortOrder "Presentation order index"
+    }
+
+    Programs {
+        int ProgramId PK "Primary Key (Auto-increment)"
+        string ProgramKey UK "Unique specialization key (e.g. btech_aiml)"
+        int BranchId FK "References Branches.BranchId"
+        string Name "Abbreviated name (e.g. AI/ML)"
+        string FullName "Full name (e.g. B.Tech - AI/ML)"
+        string CollaborationPartner "Optional industry partner (e.g. Microsoft)"
+        int SortOrder "Presentation order index"
+    }
+
+    Roles {
+        int RoleId PK "Primary Key (Auto-increment)"
+        string RoleName UK "Student | Club Manager | Faculty | HOD | Administrator"
+    }
+
+    Users {
+        int UserId PK "Primary Key (Auto-increment)"
+        string Email UK "Unique university email address"
+        string PasswordHash "Salted BCrypt/Argon2 password hash"
+        string FullName "Full legal / display name"
+        int RoleId FK "References Roles.RoleId"
+        int ProgramId FK "References Programs.ProgramId (Nullable)"
+        boolean IsActive "Account status flag"
+        int TokenVersion "Incremented on logout to invalidate JWTs"
+        datetime CreatedAt "UTC timestamp of registration"
+    }
+
+    Clubs {
+        int ClubId PK "Primary Key (Auto-increment)"
+        string Name UK "Unique official club name"
+        int ProgramId FK "References Programs.ProgramId"
+        int ManagerUserId FK "References Users.UserId (Faculty/Student Manager)"
+        string Description "Club mission and activities charter"
+        string Status "pending | active | suspended"
+        datetime CreatedAt "UTC charter timestamp"
+    }
+
+    ClubMemberships {
+        int MembershipId PK "Primary Key (Auto-increment)"
+        int ClubId FK "References Clubs.ClubId (CASCADE)"
+        int UserId FK "References Users.UserId"
+        string Status "requested | active | removed"
+        string Role "Member | Lead"
+        datetime JoinedAt "UTC membership timestamp"
+    }
+
+    Events {
+        int EventId PK "Primary Key (Auto-increment)"
+        int ClubId FK "References Clubs.ClubId (CASCADE)"
+        string Title "Official event title"
+        string VenueText "Classroom, Auditorium, or Online link"
+        datetime EventDate "Scheduled start timestamp (UTC)"
+        datetime RegistrationDeadline "Cutoff deadline (<= EventDate)"
+        int Capacity "Max seat capacity (> 0)"
+        string Status "draft | published | completed | cancelled"
+        int CreatedByUserId FK "References Users.UserId"
+    }
+
+    EventRegistrations {
+        int RegistrationId PK "Primary Key (Auto-increment)"
+        int EventId FK "References Events.EventId (CASCADE)"
+        int UserId FK "References Users.UserId"
+        string Status "confirmed | waitlisted | cancelled"
+        datetime RegisteredAt "UTC registration timestamp"
+    }
+
+    Attendance {
+        int AttendanceId PK "Primary Key (Auto-increment)"
+        int EventId FK "References Events.EventId (CASCADE)"
+        int UserId FK "References Users.UserId (Participant)"
+        datetime CheckedInAt "UTC scan / sign-in timestamp"
+        int RecordedByUserId FK "References Users.UserId (Manager/Verifier)"
+    }
+
+    EventOutcomes {
+        int OutcomeId PK "Primary Key (Auto-increment)"
+        int EventId FK "References Events.EventId (1:1 CASCADE, Unique)"
+        string Summary "Post-event report and retrospective"
+        int AttendanceCountSnapshot "Verified attendee headcount"
+        int SubmittedByUserId FK "References Users.UserId"
+        datetime SubmittedAt "UTC report submission timestamp"
+    }
+
+    ClubProposals {
+        int ProposalId PK "Primary Key (Auto-increment)"
+        int ApplicantUserId FK "References Users.UserId (Proposer)"
+        string ProposedName "Proposed official club name"
+        int ProgramId FK "References Programs.ProgramId"
+        string Description "Detailed purpose, charter, and target members"
+        string Status "submitted | changes_requested | approved | rejected"
+        datetime SubmittedAt "UTC submission timestamp"
+    }
+
+    Approvals {
+        int ApprovalId PK "Primary Key (Auto-increment)"
+        int ProposalId FK "References ClubProposals.ProposalId (CASCADE)"
+        int ReviewerUserId FK "References Users.UserId (Faculty/HOD/Admin)"
+        string Stage "faculty | hod"
+        string Decision "approve | reject | changes_requested"
+        string Comment "Reviewer evaluation / mandatory reasoning"
+        datetime DecidedAt "UTC decision timestamp"
+    }
+
+    Notifications {
+        int NotificationId PK "Primary Key (Auto-increment)"
+        int UserId FK "References Users.UserId (CASCADE)"
+        string Type "Notification category code"
+        string Message "User-facing alert message text"
+        boolean IsRead "Read receipt boolean flag"
+        datetime CreatedAt "UTC generation timestamp"
+    }
+
+    AuditLogs {
+        int AuditLogId PK "Primary Key (Auto-increment)"
+        int ActorUserId FK "References Users.UserId"
+        string Action "Action code (e.g. CLUB_CHARTERED, EVENT_CREATED)"
+        string EntityType "Target table/model name"
+        int EntityId "Target primary key ID"
+        string Details "JSON payload snapshot of modified attributes"
+        datetime CreatedAt "UTC immutable event timestamp"
+    }
+
+    UploadedFiles {
+        string FileId PK "SHA256 / UUID alphanumeric identifier"
+        int OwnerUserId FK "References Users.UserId"
+        string EntityType "Associated entity (e.g. Events, Proposals)"
+        int EntityId "Associated entity ID"
+        string OriginalFilename "Original client filename"
+        string BlobPath "Storage path / Azure Blob URI"
+        string MimeType "Validated MIME type (e.g. image/jpeg, application/pdf)"
+        int FileSizeBytes "File size in bytes"
+        datetime CreatedAt "UTC upload timestamp"
+    }

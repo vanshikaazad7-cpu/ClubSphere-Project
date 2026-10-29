@@ -1,0 +1,156 @@
+// ClubSphere Relational Database Schema (DBML)
+// Paste directly into https://dbdiagram.io to generate interactive visual ERD
+
+Table Branches {
+  BranchId integer [pk, increment, note: 'Primary Key']
+  BranchKey varchar(50) [unique, not null, note: 'e.g. btech, mtech, mba']
+  Name varchar(150) [unique, not null, note: 'e.g. Bachelor of Technology']
+  DegreeLevel varchar(50) [not null, note: 'undergraduate | postgraduate | doctoral']
+  SortOrder integer [not null, default: 0]
+}
+
+Table Programs {
+  ProgramId integer [pk, increment, note: 'Primary Key']
+  ProgramKey varchar(100) [unique, not null, note: 'e.g. btech_aiml']
+  BranchId integer [not null, ref: > Branches.BranchId]
+  Name varchar(150) [not null, note: 'e.g. AI/ML']
+  FullName varchar(255) [not null, note: 'e.g. B.Tech - AI/ML']
+  CollaborationPartner varchar(150) [null, note: 'e.g. Microsoft, Google']
+  SortOrder integer [not null, default: 0]
+}
+
+Table Roles {
+  RoleId integer [pk, increment, note: 'Primary Key']
+  RoleName varchar(30) [unique, not null, note: 'Student, Club Manager, Faculty, HOD, Administrator']
+}
+
+Table Users {
+  UserId integer [pk, increment, note: 'Primary Key']
+  Email varchar(256) [unique, not null]
+  PasswordHash varchar(256) [not null]
+  FullName varchar(150) [not null]
+  RoleId integer [not null, ref: > Roles.RoleId]
+  ProgramId integer [null, ref: > Programs.ProgramId]
+  IsActive boolean [not null, default: true]
+  TokenVersion integer [not null, default: 1]
+  CreatedAt datetime [not null]
+}
+
+Table Clubs {
+  ClubId integer [pk, increment, note: 'Primary Key']
+  Name varchar(150) [unique, not null]
+  ProgramId integer [not null, ref: > Programs.ProgramId]
+  ManagerUserId integer [not null, ref: > Users.UserId]
+  Description text [null]
+  Status varchar(20) [not null, default: 'pending', note: 'pending, active, suspended']
+  CreatedAt datetime [not null]
+}
+
+Table ClubMemberships {
+  MembershipId integer [pk, increment, note: 'Primary Key']
+  ClubId integer [not null, ref: > Clubs.ClubId]
+  UserId integer [not null, ref: > Users.UserId]
+  Status varchar(20) [not null, default: 'requested', note: 'requested, active, removed']
+  Role varchar(30) [not null, default: 'Member', note: 'Member, Lead']
+  JoinedAt datetime [not null]
+
+  indexes {
+    (ClubId, UserId) [unique, name: 'UQ_Club_User']
+  }
+}
+
+Table Events {
+  EventId integer [pk, increment, note: 'Primary Key']
+  ClubId integer [not null, ref: > Clubs.ClubId]
+  Title varchar(200) [not null]
+  VenueText varchar(200) [null]
+  EventDate datetime [not null]
+  RegistrationDeadline datetime [not null]
+  Capacity integer [not null]
+  Status varchar(20) [not null, default: 'draft', note: 'draft, published, completed, cancelled']
+  CreatedByUserId integer [not null, ref: > Users.UserId]
+}
+
+Table EventRegistrations {
+  RegistrationId integer [pk, increment, note: 'Primary Key']
+  EventId integer [not null, ref: > Events.EventId]
+  UserId integer [not null, ref: > Users.UserId]
+  Status varchar(20) [not null, default: 'confirmed', note: 'confirmed, waitlisted, cancelled']
+  RegisteredAt datetime [not null]
+
+  indexes {
+    (EventId, UserId) [unique, name: 'UQ_Event_User_Reg']
+  }
+}
+
+Table Attendance {
+  AttendanceId integer [pk, increment, note: 'Primary Key']
+  EventId integer [not null, ref: > Events.EventId]
+  UserId integer [not null, ref: > Users.UserId]
+  CheckedInAt datetime [not null]
+  RecordedByUserId integer [not null, ref: > Users.UserId]
+
+  indexes {
+    (EventId, UserId) [unique, name: 'UQ_Event_User_Att']
+  }
+}
+
+Table EventOutcomes {
+  OutcomeId integer [pk, increment, note: 'Primary Key']
+  EventId integer [unique, not null, ref: - Events.EventId]
+  Summary text [null]
+  AttendanceCountSnapshot integer [not null, default: 0]
+  SubmittedByUserId integer [not null, ref: > Users.UserId]
+  SubmittedAt datetime [not null]
+}
+
+Table ClubProposals {
+  ProposalId integer [pk, increment, note: 'Primary Key']
+  ApplicantUserId integer [not null, ref: > Users.UserId]
+  ProposedName varchar(150) [not null]
+  ProgramId integer [not null, ref: > Programs.ProgramId]
+  Description text [not null]
+  Status varchar(20) [not null, default: 'submitted', note: 'submitted, changes_requested, approved, rejected']
+  SubmittedAt datetime [not null]
+}
+
+Table Approvals {
+  ApprovalId integer [pk, increment, note: 'Primary Key']
+  ProposalId integer [not null, ref: > ClubProposals.ProposalId]
+  ReviewerUserId integer [not null, ref: > Users.UserId]
+  Stage varchar(20) [not null, note: 'faculty, hod']
+  Decision varchar(20) [not null, note: 'approve, reject, changes_requested']
+  Comment text [null]
+  DecidedAt datetime [not null]
+}
+
+Table Notifications {
+  NotificationId integer [pk, increment, note: 'Primary Key']
+  UserId integer [not null, ref: > Users.UserId]
+  Type varchar(50) [not null]
+  Message varchar(500) [not null]
+  IsRead boolean [not null, default: false]
+  CreatedAt datetime [not null]
+}
+
+Table AuditLogs {
+  AuditLogId integer [pk, increment, note: 'Primary Key']
+  ActorUserId integer [not null, ref: > Users.UserId]
+  Action varchar(100) [not null]
+  EntityType varchar(50) [not null]
+  EntityId integer [not null]
+  Details text [null]
+  CreatedAt datetime [not null]
+}
+
+Table UploadedFiles {
+  FileId varchar(64) [pk, note: 'SHA-256 identifier']
+  OwnerUserId integer [not null, ref: > Users.UserId]
+  EntityType varchar(50) [not null]
+  EntityId integer [not null]
+  OriginalFilename varchar(255) [not null]
+  BlobPath varchar(500) [not null]
+  MimeType varchar(100) [not null]
+  FileSizeBytes integer [not null]
+  CreatedAt datetime [not null]
+}
