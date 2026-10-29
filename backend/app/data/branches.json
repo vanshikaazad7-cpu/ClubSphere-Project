@@ -1,0 +1,116 @@
+{
+  "schema_version": "1.0",
+  "description": "Master degree/branch categories extracted from the supplied screenshot.",
+  "branches": [
+    {
+      "id": "btech",
+      "name": "B.Tech",
+      "degree_level": "undergraduate"
+    },
+    {
+      "id": "mtech",
+      "name": "M.Tech",
+      "degree_level": "postgraduate"
+    },
+    {
+      "id": "bsc",
+      "name": "B.Sc.",
+      "degree_level": "undergraduate"
+    },
+    {
+      "id": "msc",
+      "name": "M.Sc.",
+      "degree_level": "postgraduate"
+    },
+    {
+      "id": "bba",
+      "name": "BBA",
+      "degree_level": "undergraduate"
+    },
+    {
+      "id": "bba_dm",
+      "name": "BBA-DM",
+      "degree_level": "undergraduate"
+    },
+    {
+      "id": "mba",
+      "name": "MBA",
+      "degree_level": "postgraduate"
+    },
+    {
+      "id": "ba",
+      "name": "B.A.",
+      "degree_level": "undergraduate"
+    },
+    {
+      "id": "llb",
+      "name": "LLB",
+      "degree_level": "undergraduate"
+    },
+    {
+      "id": "ballb",
+      "name": "B.A.LL.B.",
+      "degree_level": "integrated"
+    },
+    {
+      "id": "bbal_lb",
+      "name": "BBA.LL.B.",
+      "degree_level": "integrated"
+    },
+    {
+      "id": "llm",
+      "name": "LL.M.",
+      "degree_level": "postgraduate"
+    },
+    {
+      "id": "bca",
+      "name": "BCA",
+      "degree_level": "undergraduate"
+    },
+    {
+      "id": "mca",
+      "name": "MCA",
+      "degree_level": "postgraduate"
+    },
+    {
+      "id": "bdes",
+      "name": "Bachelor of Design (B.Des)",
+      "degree_level": "undergraduate"
+    },
+    {
+      "id": "bajmc",
+      "name": "B.A.-JMC",
+      "degree_level": "undergraduate"
+    },
+    {
+      "id": "bcom",
+      "name": "B.Com",
+      "degree_level": "undergraduate"
+    },
+    {
+      "id": "bpharm",
+      "name": "Bachelor of Pharmacy",
+      "degree_level": "undergraduate"
+    },
+    {
+      "id": "hospitality",
+      "name": "B.Sc. Hotel and Hospitality Management",
+      "degree_level": "undergraduate"
+    },
+    {
+      "id": "airlines_airport",
+      "name": "B.Sc. Airlines & Airport Management",
+      "degree_level": "undergraduate"
+    },
+    {
+      "id": "barch",
+      "name": "B.Arch",
+      "degree_level": "undergraduate"
+    },
+    {
+      "id": "phd",
+      "name": "Ph.D.",
+      "degree_level": "doctoral"
+    }
+  ]
+}

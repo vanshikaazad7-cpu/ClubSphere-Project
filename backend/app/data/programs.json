@@ -1,0 +1,376 @@
+{
+  "schema_version": "1.0",
+  "description": "Programs and specializations extracted from the supplied screenshot. Each branch_id references branches.json.",
+  "programs": [
+    {
+      "id": "btech_civil",
+      "branch_id": "btech",
+      "name": "Civil Engineering",
+      "full_name": "B.Tech - Civil Engineering"
+    },
+    {
+      "id": "btech_mechanical",
+      "branch_id": "btech",
+      "name": "Mechanical Engineering",
+      "full_name": "B.Tech - Mechanical Engineering"
+    },
+    {
+      "id": "btech_aerospace",
+      "branch_id": "btech",
+      "name": "Aerospace Engineering",
+      "full_name": "B.Tech - Aerospace Engineering"
+    },
+    {
+      "id": "btech_ece",
+      "branch_id": "btech",
+      "name": "Electronics and Communication Engineering",
+      "full_name": "B.Tech - Electronics and Communication Engineering"
+    },
+    {
+      "id": "btech_biotech",
+      "branch_id": "btech",
+      "name": "Biotechnology",
+      "full_name": "B.Tech - Biotechnology"
+    },
+    {
+      "id": "btech_electrical",
+      "branch_id": "btech",
+      "name": "Electrical Engineering",
+      "full_name": "B.Tech - Electrical Engineering"
+    },
+    {
+      "id": "btech_robotics",
+      "branch_id": "btech",
+      "name": "Robotics & Automation",
+      "full_name": "B.Tech - Robotics & Automation"
+    },
+    {
+      "id": "btech_cse_aiml",
+      "branch_id": "btech",
+      "name": "CSE with AI & ML",
+      "full_name": "B.Tech - CSE with AI & ML",
+      "collaboration_partner": "Microsoft"
+    },
+    {
+      "id": "btech_cse_ds",
+      "branch_id": "btech",
+      "name": "CSE with Data Science",
+      "full_name": "B.Tech - CSE with Data Science",
+      "collaboration_partner": "Google"
+    },
+    {
+      "id": "btech_cybersecurity",
+      "branch_id": "btech",
+      "name": "CSE Cyber Security",
+      "full_name": "B.Tech - CSE Cyber Security",
+      "collaboration_partner": "Quick Heal"
+    },
+    {
+      "id": "btech_cloud",
+      "branch_id": "btech",
+      "name": "CSE with Cloud Computing",
+      "full_name": "B.Tech - CSE with Cloud Computing",
+      "collaboration_partner": "Google"
+    },
+    {
+      "id": "btech_cse",
+      "branch_id": "btech",
+      "name": "Computer Science & Engineering",
+      "full_name": "B.Tech - Computer Science & Engineering"
+    },
+    {
+      "id": "btech_it",
+      "branch_id": "btech",
+      "name": "Information Technology",
+      "full_name": "B.Tech - Information Technology"
+    },
+    {
+      "id": "btech_iot_ai",
+      "branch_id": "btech",
+      "name": "CSE IoT & AI",
+      "full_name": "B.Tech - CSE IoT & AI"
+    },
+    {
+      "id": "mtech_cse_aiml",
+      "branch_id": "mtech",
+      "name": "CSE with AI & ML",
+      "full_name": "M.Tech - CSE with AI & ML",
+      "collaboration_partner": "SAS"
+    },
+    {
+      "id": "mtech_cse_ds",
+      "branch_id": "mtech",
+      "name": "CSE Data Science",
+      "full_name": "M.Tech - CSE Data Science"
+    },
+    {
+      "id": "bsc_ds",
+      "branch_id": "bsc",
+      "name": "Data Science",
+      "full_name": "B.Sc. (Hons./Hons. with Research) Data Science"
+    },
+    {
+      "id": "bsc_biotech",
+      "branch_id": "bsc",
+      "name": "Biotechnology",
+      "full_name": "B.Sc. (Hons./Hons. with Research) Biotechnology"
+    },
+    {
+      "id": "bsc_forensic",
+      "branch_id": "bsc",
+      "name": "Forensic Science",
+      "full_name": "B.Sc. (Hons./Hons. with Research) Forensic Science"
+    },
+    {
+      "id": "bsc_microbiology",
+      "branch_id": "bsc",
+      "name": "Microbiology",
+      "full_name": "B.Sc. (Hons./Hons. with Research) Microbiology"
+    },
+    {
+      "id": "msc_ds",
+      "branch_id": "msc",
+      "name": "Data Science",
+      "full_name": "M.Sc. Data Science"
+    },
+    {
+      "id": "msc_biotech",
+      "branch_id": "msc",
+      "name": "Biotechnology",
+      "full_name": "M.Sc. Biotechnology"
+    },
+    {
+      "id": "bba_hons",
+      "branch_id": "bba",
+      "name": "Business Administration (Hons)",
+      "full_name": "BBA (Hons)"
+    },
+    {
+      "id": "bba_branding",
+      "branch_id": "bba",
+      "name": "Branding & Advertising (Hons)",
+      "full_name": "BBA - Branding & Advertising (Hons)"
+    },
+    {
+      "id": "bba_fintech_acca",
+      "branch_id": "bba",
+      "name": "Fintech + ACCA (International Accounting & Finance)",
+      "full_name": "BBA Fintech + ACCA (International Accounting & Finance)",
+      "collaboration_partner": "Grant Thornton; ACCA"
+    },
+    {
+      "id": "bba_business_analytics",
+      "branch_id": "bba",
+      "name": "Business Analytics (Hons)",
+      "full_name": "BBA(H) - Business Analytics",
+      "collaboration_partner": "Deloitte"
+    },
+    {
+      "id": "bba_dm_hons",
+      "branch_id": "bba_dm",
+      "name": "BBA-DM (Hons)",
+      "full_name": "BBA-DM (Hons)"
+    },
+    {
+      "id": "mba_applied_finance",
+      "branch_id": "mba",
+      "name": "Applied Finance",
+      "full_name": "MBA - Applied Finance",
+      "collaboration_partner": "PwC"
+    },
+    {
+      "id": "mba_fintech",
+      "branch_id": "mba",
+      "name": "Fintech",
+      "full_name": "MBA Fintech",
+      "collaboration_partner": "NAL Academy"
+    },
+    {
+      "id": "mba_ds_ai",
+      "branch_id": "mba",
+      "name": "Data Science & AI",
+      "full_name": "MBA - Data Science & AI",
+      "collaboration_partner": "SAS"
+    },
+    {
+      "id": "mba_business_analytics",
+      "branch_id": "mba",
+      "name": "Business Analytics",
+      "full_name": "MBA Business Analytics",
+      "collaboration_partner": "IBM"
+    },
+    {
+      "id": "mba_strategic_hr",
+      "branch_id": "mba",
+      "name": "Strategic HR",
+      "full_name": "MBA - Strategic HR",
+      "collaboration_partner": "AON"
+    },
+    {
+      "id": "mba_global_business",
+      "branch_id": "mba",
+      "name": "Global Business Management",
+      "full_name": "MBA - Global Business Management",
+      "collaboration_partner": "Grant Thornton"
+    },
+    {
+      "id": "mba_digital_marketing",
+      "branch_id": "mba",
+      "name": "Digital Marketing",
+      "full_name": "MBA (Digital Marketing)"
+    },
+    {
+      "id": "ba_liberal_arts",
+      "branch_id": "ba",
+      "name": "Liberal Arts (Hons)",
+      "full_name": "B.A. Liberal Arts (Hons)"
+    },
+    {
+      "id": "ba_psychology",
+      "branch_id": "ba",
+      "name": "Psychology (Hons.)",
+      "full_name": "B.A. Psychology (Hons.)"
+    },
+    {
+      "id": "llb_general",
+      "branch_id": "llb",
+      "name": "Bachelor of Law (LLB)",
+      "full_name": "Bachelor of Law (LLB)"
+    },
+    {
+      "id": "ballb_integrated",
+      "branch_id": "ballb",
+      "name": "B.A.LL.B. (Hons) Integrated",
+      "full_name": "B.A.LL.B. (Hons) Integrated"
+    },
+    {
+      "id": "bbal_lb_integrated",
+      "branch_id": "bbal_lb",
+      "name": "BBA.LL.B. (Hons) Integrated",
+      "full_name": "BBA.LL.B. (Hons) Integrated"
+    },
+    {
+      "id": "llm_criminal",
+      "branch_id": "llm",
+      "name": "Criminal Law",
+      "full_name": "LL.M. in Criminal Law"
+    },
+    {
+      "id": "llm_constitutional",
+      "branch_id": "llm",
+      "name": "Constitutional Law",
+      "full_name": "LL.M. in Constitutional Law"
+    },
+    {
+      "id": "llm_corporate",
+      "branch_id": "llm",
+      "name": "Corporate and Business Law",
+      "full_name": "LL.M. in Corporate and Business Law"
+    },
+    {
+      "id": "bca_hons",
+      "branch_id": "bca",
+      "name": "BCA (Hons)",
+      "full_name": "BCA (Hons)"
+    },
+    {
+      "id": "bca_aiml",
+      "branch_id": "bca",
+      "name": "BCA (Hons) AI & ML",
+      "full_name": "BCA (Hons) AI & ML"
+    },
+    {
+      "id": "bca_ds",
+      "branch_id": "bca",
+      "name": "Data Science",
+      "full_name": "BCA(H) - Data Science",
+      "collaboration_partner": "SAS"
+    },
+    {
+      "id": "mca_general",
+      "branch_id": "mca",
+      "name": "MCA",
+      "full_name": "MCA"
+    },
+    {
+      "id": "mca_ds",
+      "branch_id": "mca",
+      "name": "Data Science",
+      "full_name": "MCA Data Science"
+    },
+    {
+      "id": "mca_aiml",
+      "branch_id": "mca",
+      "name": "AI & ML",
+      "full_name": "MCA - AI & ML",
+      "collaboration_partner": "SAS"
+    },
+    {
+      "id": "bdes_fashion",
+      "branch_id": "bdes",
+      "name": "Fashion & Design",
+      "full_name": "Bachelor of Design - Fashion & Design"
+    },
+    {
+      "id": "bdes_interior",
+      "branch_id": "bdes",
+      "name": "Interior Design",
+      "full_name": "Bachelor of Design - Interior Design"
+    },
+    {
+      "id": "bajmc_general",
+      "branch_id": "bajmc",
+      "name": "Journalism and Mass Communication",
+      "full_name": "BA-JMC"
+    },
+    {
+      "id": "bsc_animation",
+      "branch_id": "bsc",
+      "name": "Animation, VFX & Gaming",
+      "full_name": "B.Sc. (Hons) - Animation, VFX & Gaming"
+    },
+    {
+      "id": "bcom_hons",
+      "branch_id": "bcom",
+      "name": "Commerce (Hons)",
+      "full_name": "B. Com (Hons)"
+    },
+    {
+      "id": "bcom_acca",
+      "branch_id": "bcom",
+      "name": "Commerce (Hons) + ACCA (International Accounting & Finance)",
+      "full_name": "B.Com(H) + ACCA (International Accounting & Finance)",
+      "collaboration_partner": "Grant Thornton; ACCA"
+    },
+    {
+      "id": "bpharm_general",
+      "branch_id": "bpharm",
+      "name": "Bachelor of Pharmacy",
+      "full_name": "Bachelor of Pharmacy"
+    },
+    {
+      "id": "hospitality_general",
+      "branch_id": "hospitality",
+      "name": "Hotel and Hospitality Management",
+      "full_name": "B.Sc. - Hotel and Hospitality Management"
+    },
+    {
+      "id": "airlines_airport_general",
+      "branch_id": "airlines_airport",
+      "name": "Airlines & Airport Management",
+      "full_name": "B.Sc. - Airlines & Airport Management"
+    },
+    {
+      "id": "barch_general",
+      "branch_id": "barch",
+      "name": "Architecture",
+      "full_name": "B.Arch"
+    },
+    {
+      "id": "phd_admissions",
+      "branch_id": "phd",
+      "name": "Ph.D. Admissions",
+      "full_name": "Ph.D. Admissions"
+    }
+  ]
+}
