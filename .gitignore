@@ -1,0 +1,18 @@
+# Python & test cache
+__pycache__/
+.pytest_cache/
+
+# Environment configuration
+.env
+
+# SQLite local database
+*.db
+
+# File uploads
+uploads/
+
+# Node dependencies & build artifacts
+node_modules/
+dist/
+
+
